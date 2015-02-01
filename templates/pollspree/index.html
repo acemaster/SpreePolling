@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Idol Polls</title>
+
+  <!-- CSS  -->
+  <link href={% static "css/materialize.css" %} type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href={% static "css/style.css" %} type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="container">
+      <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right side-nav">
+          <li><a href="#">Navbar Link</a></li>
+        </ul><a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      </div>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Idol Voting</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Voting for Idol starts here</h5>
+      </div>
+      
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+   <div class="row">
+   {% for participant in Participants %}
+      <div class="col l4 s12">
+        <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src={% static "images/vivek.jpg" %}>
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{participant.name}}<i class="mdi-navigation-more-vert right"></i></span>
+          <p><a href="#">Idol Singer</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{participant.name}}<i class="mdi-navigation-close right"></i></span>
+          <p>Here number of votes.{{participant.votes}}</p>
+        </div>
+      </div>
+      
+       </div>
+      {% endfor %}
+       
+      
+      </div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">SpringSpree</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src={% static "js/materialize.js" %}></script>
+  <script src={% static "js/init.js" %}></script>
+
+  </body>
+</html>
