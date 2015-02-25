@@ -8,6 +8,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pollspree/', include('pollspree.urls')),
-    url(r'^spreeevent/', include('spreeevent.urls')),
+    url(r'^$', include('spreeevent.urls')),
 
 )
