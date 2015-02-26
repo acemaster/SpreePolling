@@ -66,17 +66,7 @@
         <div class="col s12 m12">
 
           {% for e in Events %}
-               {% if e.startday < day %}
-          <div class="card red darken-3">
-            <div class="card-content white-text">
-              <span class="card-title">{{ e.name }}</span>
-              <p>This event is taking place at {{ e.venue }}</p>
-            </div>
-            <div class="card-action">
-              <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
-            </div>
-          </div>
-            {% elif e.endtime|add:"-1" < hour %}
+            {% if e.startday = day and e.endtime|add:"-1" < hour %}
             <div class="card red darken-3">
             <div class="card-content white-text">
               <span class="card-title">{{ e.name }}</span>
@@ -103,17 +93,8 @@
 <div class="row">
         <div class="col s12 m12">
           {% for e in Events %}
-            {% if e.startday > day %}
-          <div class="card deep-purple darken-4">
-            <div class="card-content white-text">
-              <span class="card-title">{{ e.name }}</span>
-              <p>This event is taking place at {{ e.venue }}</p>
-            </div>
-            <div class="card-action">
-              <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
-            </div>
-          </div>
-            {% elif e.starttime > hour %}
+
+            {% if e.startday = day and e.starttime > hour %}
             <div class="card deep-purple darken-4">
             <div class="card-content white-text">
               <span class="card-title">{{ e.name }}</span>
