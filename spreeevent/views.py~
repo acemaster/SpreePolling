@@ -9,7 +9,7 @@ def index(request):
     plist=Events.objects.all()
     time=datetime.datetime.now()
     hour=time.hour
-    day=time.day
+    day=28
     print time
     context_dict = {'Events': plist, 'hour': hour, 'day': day}
     return render(request, 'spreeevent/index.html',context_dict)
