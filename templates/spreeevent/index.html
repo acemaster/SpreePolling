@@ -1,154 +1,142 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Event Schedule</title>
-
-  <!-- CSS  -->
-  <link href={% static "css/materialize.css" %} type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href={% static "css/style.css" %} type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
- <nav>
-    <div class="nav-wrapper grey darken-4">
-      <div class="col s12">
-        <a href="#!" class="brand-logo">SpringSpree</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-
-        <ul class="side-nav" id="mobile-demo">
-          <li><a href="http://events.springspree.in/home">Events</i></a></li>
-          <li><a href="www.springspree.in">Home</a></li>
-          <li><a href="http://register.springspree.in">Register</a></li>
-        </ul>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>Event Schedule</title>
+    <!-- CSS  -->
+    <link href={% static "css/materialize.css" %} type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href={% static "css/style.css" %} type="text/css" rel="stylesheet" media="screen,projection"/>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper grey darken-4">
+        <div class="col s12">
+          <a href="#!" class="brand-logo">SpringSpree</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="http://events.springspree.in/home">Events</i></a></li>
+            <li><a href="www.springspree.in">Home</a></li>
+            <li><a href="http://register.springspree.in">Register</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="card grey darken-3">
+            <div class="card-content white-text">
+              <span class="card-title"><a href="http://events.springspree.in/assets/schedule/event-schedule.pdf">Download the pdf here</a></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
-<div class="container">
-<div class="row">
-        <div class="col s12 m12">
-            <div class="card grey darken-3">
-                <div class="card-content white-text">
-                    <span class="card-title"><a href="http://events.springspree.in/assets/schedule/event-schedule.pdf">Download the pdf here</a></span>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
     <div class="row">
-        <div class="col s12 m3 offset-m5">
-            <div class="card grey darken-3">
-                <div class="card-content white-text">
-                    <span class="card-title">Ongoing Events</span>
-                </div>
-            </div>
-        </div>
-
-    </div>
-<div class="row">
-        <div class="col s12 m12">
-           {% for e in Events %}
-            {% if e.startday == day and e.starttime <= hour and e.endtime|add:"-1" >= hour %}
-          <div class="card green darken-2">
-            <div class="card-content white-text">
-              <span class="card-title">{{ e.name }}</span>
-              <p>This event is taking place at {{ e.venue }}</p>
-            </div>
-            <div class="card-action">
-              <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
-            </div>
+      <div class="col s12 m3 offset-m5">
+        <div class="card grey darken-3">
+          <div class="card-content white-text">
+            <span class="card-title">Ongoing Events</span>
           </div>
-            {% endif %}
-            {% endfor %}
-
         </div>
-</div>
-    <div class="row">
-        <div class="col s12 m3 offset-m5">
-            <div class="card grey darken-3">
-                <div class="card-content white-text">
-                    <span class="card-title">Past Events</span>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-<div class="row">
-        <div class="col s12 m12">
-
-          {% for e in Events %}
-            {% if e.startday = day and e.endtime|add:"-1" < hour %}
+    <div class="row">
+      <div class="col s12 m12">
+        {% for e in Events %}
+          {% if e.startday == day and e.starttime <= hour and e.endtime|add:"-1" >= hour %}
+            <div class="card green darken-2">
+              <div class="card-content white-text">
+                <span class="card-title">{{ e.name }}</span>
+                <p>This event is taking place at {{ e.venue }}</p>
+              </div>
+              <div class="card-action">
+                <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m3 offset-m5">
+        <div class="card grey darken-3">
+          <div class="card-content white-text">
+            <span class="card-title">Past Events</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12">
+        {% for e in Events %}
+          {% if e.startday = day and e.endtime|add:"-1" < hour %}
             <div class="card red darken-3">
-            <div class="card-content white-text">
-              <span class="card-title">{{ e.name }}</span>
-              <p>This event is taking place at {{ e.venue }}</p>
+              <div class="card-content white-text">
+                <span class="card-title">{{ e.name }}</span>
+                <p>This event is taking place at {{ e.venue }}</p>
+              </div>
+              <div class="card-action">
+                <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
+              </div>
             </div>
-            <div class="card-action">
-              <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
-            </div>
-          </div>
-            {% endif %}
-            {% endfor %}
-
-        </div>
-</div>
-     <div class="row">
-        <div class="col s12 m3 offset-m5">
-            <div class="card grey darken-3">
-                <div class="card-content white-text">
-                    <span class="card-title">Future Events</span>
-                </div>
-            </div>
-        </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
-<div class="row">
-        <div class="col s12 m12">
-          {% for e in Events %}
-
-            {% if e.startday = day and e.starttime > hour %}
-            <div class="card deep-purple darken-4">
-            <div class="card-content white-text">
-              <span class="card-title">{{ e.name }}</span>
-              <p>This event is taking place at {{ e.venue }}</p>
-            </div>
-            <div class="card-action">
-              <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
-            </div>
+    <div class="row">
+      <div class="col s12 m3 offset-m5">
+        <div class="card grey darken-3">
+          <div class="card-content white-text">
+            <span class="card-title">Future Events</span>
           </div>
-            {% endif %}
-            {% endfor %}
-
         </div>
-</div>
-     
-
- <footer class="page-footer grey darken-3">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">SpringSpree</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12">
+        {% for e in Events %}
+          {% if e.startday = day and e.starttime > hour %}
+            <div class="card deep-purple darken-4">
+              <div class="card-content white-text">
+                <span class="card-title">{{ e.name }}</span>
+                <p>This event is taking place at {{ e.venue }}</p>
               </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="http://events.springspree.in/home">Events</a></li>
-                  <li><a class="grey-text text-lighten-3" href="www.springspree.in">Home</a></li>
-                  <li><a class="grey-text text-lighten-3" href="http://register.springspree.in">Register</a></li>
-                </ul>
+              <div class="card-action">
+                <a href="http://events.springspree.in/home/events/{{e.alias}}">Know more</a>
               </div>
             </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    
+    <footer class="page-footer grey darken-3">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">SpringSpree</h5>
           </div>
-          <div class="footer-copyright grey darken-4">
-            <div class="container">
-            © 2014 Copyright SpringSpree
-            </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="http://events.springspree.in/home">Events</a></li>
+              <li><a class="grey-text text-lighten-3" href="www.springspree.in">Home</a></li>
+              <li><a class="grey-text text-lighten-3" href="http://register.springspree.in">Register</a></li>
+            </ul>
           </div>
-        </footer>
- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src={% static "js/materialize.js" %}></script>
-  <script src={% static "js/init.js" %}></script>
-</body>
+        </div>
+      </div>
+      <div class="footer-copyright grey darken-4">
+        <div class="container">
+          © 2014 Copyright SpringSpree
+        </div>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src={% static "js/materialize.js" %}></script>
+    <script src={% static "js/init.js" %}></script>
+  </body>
 </html>
-
-
